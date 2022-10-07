@@ -8,15 +8,26 @@ import {TOKEN_KEY} from "../../utils/config";
 
 const initialState = {
     token: getItem(TOKEN_KEY) || '',
+    userInfo: {}
 }
 
 const user = (state = initialState, action) => {
-    console.log(action, 'action')
     switch (action.type) {
         case 'user/login':
             return {
                 ...state,
                 token: action.payload
+            }
+        case 'user/saveUserInfo':
+            return {
+                ...state,
+                userInfo: action.payload
+            }
+        case 'user/logout':
+            return {
+                ...state,
+                token: '',
+                userInfo: {}
             }
         default:
             return state

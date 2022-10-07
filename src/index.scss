@@ -1,5 +1,10 @@
 @import url('./styles/reset.css');
+@import url('./styles/bootstrap.min.css');
 
 #root, .App {
   height: 100%;
+}
+
+a {
+  text-decoration: none !important;
 }

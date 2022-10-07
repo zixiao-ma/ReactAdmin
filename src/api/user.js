@@ -5,16 +5,16 @@ import request from '../utils/request'
  * @returns
  */
 const login = (data) => {
-  return request({ url: '/admin/login', method: 'POST', data })
+    return request({url: '/admin/login', method: 'POST', data})
 }
 const getUserInfo = () => {
-  return request({ url: '/admin/getinfo', method: 'POST' })
+    return request({url: '/admin/getinfo', method: 'POST'})
 }
 const logout = () => {
-  return request({ url: '/admin/logout', method: 'POST' })
+    return request({url: '/admin/logout', method: 'POST'})
 }
 export default {
-  login,
-  getUserInfo,
-  logout
+    login,
+    getUserInfo,
+    logout
 }

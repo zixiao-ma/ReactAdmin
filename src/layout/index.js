@@ -1,16 +1,26 @@
-/**
- * @author MaZiXiao
- * @date 2022-10-06 20:21
- */
-import {useSelector} from "react-redux";
+import {Layout} from 'antd';
+import React from 'react';
+import './index.scss'
+import AppHeader from "./AppHeader";
+import AppSider from "./AppSider";
+import TagsView from "./AppMain/tagsView";
+import {AppMain} from "./AppMain";
 
-function Layout() {
-    const token = useSelector(state => state.user.token)
-    return (
-        <div className="Layout">
-            Layout-{token}
-        </div>
-    );
-}
+const HomeLayout = () => (
+    <Layout>
+        <AppHeader></AppHeader>
+        <Layout>
+            <AppSider></AppSider>
+            <Layout
+                style={{
+                    padding: '0 24px 24px',
+                }}
+            >
+                <TagsView></TagsView>
+                <AppMain></AppMain>
+            </Layout>
+        </Layout>
+    </Layout>
+);
 
-export default Layout;
+export default HomeLayout;

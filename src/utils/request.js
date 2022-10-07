@@ -1,9 +1,12 @@
 import axios from 'axios'
 import {message} from 'antd';
+import {getItem} from "./storage";
+import {TOKEN_KEY} from "./config";
+import NProgress from 'nprogress'
 
 const instance = axios.create({
     baseURL: "/dev-api",
-    timeout: 6000
+    timeout: 20000
 })
 // 添加请求拦截器
 
@@ -11,10 +14,9 @@ instance.interceptors.request.use(
     function (config) {
         // TODO 添加token
         // loading 可选 全屏loading和加载进度条
-        /* const token = store.getters.token
-         if (token) config.headers.token = token
-         loading.nprogress.start()
-         store.commit('viewLoading/startLoading')*/
+        NProgress.start()
+        const token = getItem(TOKEN_KEY)
+        if (token) config.headers.token = token
         return config
     },
     function (error) {
@@ -25,6 +27,7 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
     function (response) {
+        NProgress.done()
         // 对响应数据做点什么
         const {status, data: {data, msg}} = response
         if (status === 200 || msg === 'ok') {
@@ -41,8 +44,8 @@ instance.interceptors.response.use(
             message.error('请求超时，请检查您的网络！')
         }
         console.log(error, 'error')
-        const {status} = error.response
-        const messageError = error.response.data?.msg
+        const {status} = error?.response || 504
+        const messageError = error?.response?.data?.msg
         switch (status) {
             case 400:
                 message.error(messageError)
@@ -59,7 +62,7 @@ instance.interceptors.response.use(
             case 500:
                 message.error('服务器发生错误！')
                 break
-            case 503:
+            case 504:
                 message.error('服务暂时不可用！')
                 break
             case 408:

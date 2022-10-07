@@ -1,0 +1,102 @@
+
+.tagsViewBox {
+  display: flex;
+  margin: 5px 0;
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+
+  .ant-btn {
+    .anticon-left {
+      position: relative;
+      top: -2px;
+    }
+
+    .anticon-right {
+      position: relative;
+      top: -2px;
+    }
+  }
+
+  .closeIcon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 14px;
+    font-size: 10px;
+    border-radius: 50px;
+    transition: all .3s;
+
+
+    &:hover {
+
+      background: #ddd;
+    }
+  }
+
+  .tagsView {
+    display: flex;
+    width: 95%;
+    overflow: hidden;
+  }
+
+  .item {
+    padding: 3px 5px;
+    margin: 0 5px;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .tagsLabel {
+    width: 64px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+  }
+
+  .active {
+    background-color: #001529;
+    color: #fff;
+  }
+
+}
+
+.skeleton {
+  display: flex;
+  margin: 5px 0;
+  user-select: none;
+  cursor: pointer;
+  width: 100%;
+
+  span {
+    width: 108px;
+    height: 24px;
+    margin: 0 5px;
+    display: flex;
+    font-size: 12px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

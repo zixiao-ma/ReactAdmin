@@ -6,7 +6,7 @@ import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {LockOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Checkbox, Form, Input} from 'antd';
+import {Button, Checkbox, Form, Input, message} from 'antd';
 import './login.scss'
 import {login} from "../../store/actions/user";
 
@@ -18,10 +18,13 @@ function Login() {
         setLoginLoading(true)
         try {
             await dispatch(login(val))
-            navigate('/')
+            navigate('/Home')
         } catch (e) {
         }
         setLoginLoading(false)
+    }
+    const handleClickShowToast = () => {
+        message.info('用户名：admin 密码：admin')
     }
     return (
         <div className="Login-container">
@@ -71,7 +74,7 @@ function Login() {
                             <Checkbox>记住密码</Checkbox>
                         </Form.Item>
 
-                        <a className="login-form-forgot" style={{float: 'right'}}>
+                        <a className="login-form-forgot" style={{float: 'right'}} onClick={handleClickShowToast}>
                             忘记密码？
                         </a>
                     </Form.Item>
