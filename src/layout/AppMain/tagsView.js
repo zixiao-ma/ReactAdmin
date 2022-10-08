@@ -3,15 +3,15 @@ import {CloseOutlined, FileTextOutlined, LeftOutlined, RightOutlined} from "@ant
 import './tagsView.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {Button} from "antd";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const TagsView = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const tagsArr = useSelector(state => state.tags.tags)
     const currentKey = useSelector(state => state.system.currentPageKey)
-    const startKey = tagsArr[0]?.key || 0;
-    const lastKey = tagsArr[tagsArr.length - 1]?.key || 0
+    const startKey = 0;
+    const lastKey = tagsArr.length - 1;
     const [showBtn, setShowBtn] = useState(false);
     const menuLoading = useSelector(state => state.system.menuLoading)
 
@@ -27,10 +27,17 @@ const TagsView = () => {
     useEffect(() => {
         scrollToView(currentKey)
     }, [currentKey]);
+    const location = useLocation()
+    let url = location.pathname;
 
     function getClassName(key) {
         if (key === currentKey) {
             return 'item active'
+        } else if (currentKey === -1) {
+            const data = tagsArr.find(v => {
+                return url === `/Home${v.path}`
+            })
+            return key === data.key ? 'item active' : 'item'
         } else {
             return 'item'
         }
@@ -83,10 +90,10 @@ const TagsView = () => {
     return !menuLoading ? (
         <div className={'tagsViewBox'} ref={tagsDiv}>
             {showBtn && <Button onClick={handleClickLeft}><LeftOutlined/></Button>}
-            <div className="tagsView" style={{margin: showBtn ? '0 5px' : '0'}}>
+            <div className="tagsView animate__animated animate__fadeInRight" style={{margin: showBtn ? '0 5px' : '0'}}>
                 {
                     tagsArr.map((item, index) => (
-                        <div className={getClassName(item.key)} key={item.key} id={`tags${item.key}`}
+                        <div className={getClassName(item.key)} key={item.key} id={`tags${index}`}
                              onClick={() => handleClickTag(item)}>
                         <span className='d-flex align-items-center'><FileTextOutlined/><span
                             className='ms-1 tagsLabel'>{item.label}</span></span>

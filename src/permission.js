@@ -10,10 +10,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo} from "./store/actions/user";
 
 export default function Permission({children}) {
+    const dispatch = useDispatch()
     const token = getItem(TOKEN_KEY)
     const userInfo = useSelector(state => state.user.userInfo)
-    const dispatch = useDispatch()
-    const hasUserInfo = JSON.stringify(userInfo) !== '{}'
+    const hasUserInfo = JSON.stringify(userInfo) !== '{}';
     if (token) {
         if (!hasUserInfo) {
             dispatch(getUserInfo())

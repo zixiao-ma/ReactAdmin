@@ -16,14 +16,15 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path="/login" element={<Login/>}/>
-                    <Route path="/Home" element={
+                    <Route path='/' element={
                         <Permission>
                             <HomeLayout/>
                         </Permission>}
                     >
                         <Route path="/Home/" element={<Index/>}></Route>
                         {routerList.map(item => {
-                            return (<Route key={item.id} path={`/Home${item.path}`} element={item.element}></Route>)
+                            return (<Route key={item.id} path={`/Home${item.path}`}
+                                           element={item.element}></Route>)
                         })}
                         <Route path="*" element={<LoadingView></LoadingView>}></Route>
                     </Route>

@@ -1,0 +1,36 @@
+.ant-card-body {
+  padding: 5px !important;
+}
+
+.statisticsTop {
+  height: 180px;
+  display: flex;
+  margin-bottom: 20px;
+
+  .ant-card {
+    width: 277px;
+    margin: 0 20px;
+  }
+}
+
+.statisticsMiddle {
+  height: 86px;
+  display: flex;
+  margin-bottom: 20px;
+
+  .ant-card {
+    width: 130px;
+    margin: 0 20px;
+  }
+}
+
+.statisticsBottom {
+  /*595 387*/
+  height: 320px;
+  display: flex;
+
+  .ant-card {
+    width: 595px;
+    margin: 0 20px;
+  }
+}

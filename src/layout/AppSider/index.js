@@ -3,7 +3,7 @@ import {Menu, Spin} from "antd";
 import Sider from "antd/es/layout/Sider";
 import {useDispatch, useSelector} from "react-redux";
 import {menuIcon} from "./icon";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const AppSider = () => {
     const collapse = useSelector(state => state.system.collapse)
@@ -11,6 +11,7 @@ const AppSider = () => {
     const dispatch = useDispatch()
     const menuList = useSelector(state => state.user.userInfo.menus) || [];
     const navigate = useNavigate()
+    const {pathname} = useLocation()
     const items2 = menuList.map((item, index) => {
         return {
             key: item.id,
@@ -26,6 +27,7 @@ const AppSider = () => {
             })
         }
     });
+
     const currentKey = useSelector(state => state.system.currentPageKey)
     const menuAllChild = items2.map(item => item.children).flat()
     const handleMenuSelect = ({key}) => {
@@ -33,6 +35,14 @@ const AppSider = () => {
         navigate(`/Home${currentData.path}`)
         dispatch({type: 'tags/add', payload: currentData})
         dispatch({type: 'system/setCurrentKey', payload: currentData.key})
+    }
+
+    function setDefaultMenu() {
+        const currentData = menuAllChild.find(v => {
+            return pathname === `/Home${v.path}`
+        })
+        if (currentData) dispatch({type: 'system/setCurrentKey', payload: currentData?.key})
+
     }
 
     return (

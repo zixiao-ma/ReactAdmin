@@ -7,7 +7,11 @@ import {TAGSVIEW_KEY} from "../../utils/config";
 import React from "react";
 
 const initState = {
-    tags: getItem(TAGSVIEW_KEY) || []
+    tags: getItem(TAGSVIEW_KEY) || [{
+        "key": 10,
+        "path": "/",
+        "label": "主控台"
+    }]
 }
 export default function tags(state = initState, action) {
     switch (action.type) {

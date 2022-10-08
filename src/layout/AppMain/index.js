@@ -11,9 +11,9 @@ export const AppMain = () => {
         <Content
             className="site-layout-background"
             style={{
-                padding: 24,
+                padding: '20px 0',
                 margin: 0,
-                minHeight: 280,
+                minHeight: 300,
             }}
         >
             <Outlet></Outlet>
