@@ -10,8 +10,8 @@ const TagsView = () => {
     const navigate = useNavigate()
     const tagsArr = useSelector(state => state.tags.tags)
     const currentKey = useSelector(state => state.system.currentPageKey)
-    const startKey = 0;
-    const lastKey = tagsArr.length - 1;
+    const startKey = tagsArr[0]?.key || -1;
+    const lastKey = tagsArr[tagsArr.length - 1].key || -1;
     const [showBtn, setShowBtn] = useState(false);
     const menuLoading = useSelector(state => state.system.menuLoading)
 
@@ -37,7 +37,7 @@ const TagsView = () => {
             const data = tagsArr.find(v => {
                 return url === `/Home${v.path}`
             })
-            return key === data.key ? 'item active' : 'item'
+            return key === data?.key ? 'item active' : 'item'
         } else {
             return 'item'
         }
@@ -93,7 +93,7 @@ const TagsView = () => {
             <div className="tagsView animate__animated animate__fadeInRight" style={{margin: showBtn ? '0 5px' : '0'}}>
                 {
                     tagsArr.map((item, index) => (
-                        <div className={getClassName(item.key)} key={item.key} id={`tags${index}`}
+                        <div className={getClassName(item.key)} key={item.key} id={`tags${item.key}`}
                              onClick={() => handleClickTag(item)}>
                         <span className='d-flex align-items-center'><FileTextOutlined/><span
                             className='ms-1 tagsLabel'>{item.label}</span></span>

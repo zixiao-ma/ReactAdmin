@@ -1,5 +1,5 @@
 .ant-card-body {
-  padding: 0 !important;
+  padding: 5px !important;
 }
 
 .statisticsTop {
@@ -12,17 +12,13 @@
     width: 24%;
     margin: 0 20px;
     max-width: 261px;
+  }
 
-    .statisticsTopTitle {
-      background-color: #f2f2f2;
-    }
-
-    h2 {
-      font-weight: bold;
-      color: #666;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #f2f2f2;
-    }
+  .SkeletonTop {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 170px;
   }
 }
 
@@ -51,6 +47,15 @@
       margin-right: 0;
     }
   }
+
+  .SkeletonMiddle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 96px;
+    width: 100px;
+  }
 }
 
 .statisticsBottom {
@@ -58,6 +63,7 @@
   height: 305px;
   display: flex;
   justify-content: center;
+
 
   .statisticsBottomBox {
     padding: 0 20px;
@@ -71,8 +77,24 @@
         margin-right: 20px;
       }
     }
+
+    .SkeletonNode {
+      width: 450px;
+      height: 200px;
+      margin-top: 20px;
+    }
+
+    .skeletonChart {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
+  .Skeleton-btm-top {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .statisticsBottom-right {
@@ -84,6 +106,23 @@
 
     &:first-child {
       margin-bottom: 20px;
+    }
+  }
+
+  .statisticsBottom-right-btm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .right-btm-box-item {
+      width: 120px;
+      height: 90px;
+      margin-top: 10px;
+      border: 1px solid #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
     }
   }
 }

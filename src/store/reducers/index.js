@@ -6,10 +6,12 @@ import user from "./user";
 import system from "./system";
 import {combineReducers} from "redux";
 import tags from "./tagsView";
+import indexHome from './indexHome'
 
 const rootReducer = combineReducers({
     user,
     system,
-    tags
+    tags,
+    indexHome
 })
 export default rootReducer
